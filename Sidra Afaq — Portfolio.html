@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sidra Afaq</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    box-sizing: border-box;
+    --sage: #D8E2DC;
+    --peach: #FFE5D9;
+    --pink: #FFCAD4;
+    --rose: #F4ACB7;
+    --mauve: #9D8189;
+
+    --bg: var(--peach);
+    --bg-alt: var(--sage);
+    --bg-deep: var(--rose);
+    --ink: #4A2E30;
+    --ink-soft: #7A5A5C;
+    --surface: #FFFDFB;
+    --accent: var(--mauve);
+
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #3A2A2C;
+      --bg-alt: #2E2224;
+      --bg-deep: #4C3336;
+      --ink: #F6E9E5;
+      --ink-soft: #D9BFC0;
+      --surface: #44302F;
+      --accent: var(--rose);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #3A2A2C;
+    --bg-alt: #2E2224;
+    --bg-deep: #4C3336;
+    --ink: #F6E9E5;
+    --ink-soft: #D9BFC0;
+    --surface: #44302F;
+    --accent: var(--rose);
+  }
+
+  html {
+    scroll-padding-top: env(safe-area-inset-top, 0px);
+    scroll-behavior: smooth;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar {
+    position: sticky;
+    top: 0;
+    top: env(safe-area-inset-top, 0px);
+    z-index: 20;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  }
+
+  .topbar-inner {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 16px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .topbar nav {
+    display: flex;
+    gap: 28px;
+  }
+
+  .topbar nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .topbar nav a:hover,
+  .topbar nav a:focus-visible { color: var(--ink); }
+
+  .mark-small {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--mauve);
+    color: var(--peach);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 96px 0 88px;
+    overflow-x: auto;
+  }
+
+  .mark {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+    background: linear-gradient(155deg, var(--rose), var(--mauve));
+    color: var(--surface);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.9rem;
+    letter-spacing: 0.02em;
+    margin-bottom: 28px;
+    box-shadow: 0 14px 30px -14px color-mix(in srgb, var(--mauve) 60%, transparent);
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(2.6rem, 6vw, 4.4rem);
+    line-height: 1.03;
+    margin: 0 0 14px;
+    letter-spacing: -0.01em;
+  }
+
+  .hero .role {
+    font-size: clamp(1.05rem, 2vw, 1.3rem);
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin: 0 0 34px;
+  }
+
+  .hero .role strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .cta-row { display: flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 26px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .btn-primary {
+    background: var(--mauve);
+    color: var(--peach);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 24px -10px color-mix(in srgb, var(--mauve) 70%, transparent); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--ink);
+    border: 1.5px solid color-mix(in srgb, var(--ink) 28%, transparent);
+  }
+  .btn-ghost:hover { border-color: var(--ink); }
+
+  /* ---------- Section shell ---------- */
+  section { padding: 84px 0; }
+  section h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: clamp(1.7rem, 3.4vw, 2.3rem);
+    margin: 0 0 40px;
+  }
+
+  .band-alt { background: var(--bg-alt); }
+  .band-deep { background: var(--bg-deep); }
+
+  /* ---------- About ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 720px) { .about-grid { grid-template-columns: 1fr; gap: 32px; } }
+
+  .about-grid p { max-width: 62ch; color: var(--ink-soft); font-size: 1.02rem; }
+  .about-grid p + p { margin-top: 16px; }
+
+  .fact-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+  .fact-list li {
+    background: var(--surface);
+    border-radius: 14px;
+    padding: 16px 20px;
+    font-size: 0.95rem;
+    border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+  }
+  .fact-list li span {
+    display: block;
+    color: var(--ink-soft);
+    font-size: 0.8rem;
+    margin-bottom: 3px;
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-wrap { display: flex; flex-wrap: wrap; gap: 12px; }
+  .skill-pill {
+    background: var(--surface);
+    border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+
+  /* ---------- Projects ---------- */
+  .project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 26px;
+  }
+
+  .project-card {
+    background: var(--surface);
+    border-radius: 18px;
+    padding: 28px 26px;
+    border: 1px solid color-mix(in srgb, var(--ink) 8%, transparent);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .project-card .tag {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  .project-card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin: 0;
+  }
+
+  .project-card p {
+    color: var(--ink-soft);
+    font-size: 0.94rem;
+    margin: 0;
+    flex-grow: 1;
+  }
+
+  .project-card a {
+    color: var(--ink);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--accent);
+    align-self: flex-start;
+    padding-bottom: 1px;
+  }
+
+  /* ---------- Contact / footer ---------- */
+  .contact {
+    background: var(--mauve);
+    color: var(--peach);
+    padding: 88px 0 60px;
+  }
+  .contact h2 { color: var(--peach); }
+  .contact p { color: color-mix(in srgb, var(--peach) 82%, white); max-width: 50ch; font-size: 1.02rem; }
+
+  .contact .btn-primary { background: var(--peach); color: var(--mauve); }
+  .contact .btn-ghost { border-color: color-mix(in srgb, var(--peach) 50%, transparent); color: var(--peach); }
+  .contact .btn-ghost:hover { border-color: var(--peach); }
+
+  footer {
+    padding: 24px 0 32px;
+    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+    font-size: 0.82rem;
+    color: color-mix(in srgb, var(--peach) 70%, white);
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* ---------- Animations ---------- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero .mark   { animation: fadeUp 0.7s ease both; }
+  .hero h1      { animation: fadeUp 0.7s ease 0.1s both; }
+  .hero .role   { animation: fadeUp 0.7s ease 0.2s both; }
+  .hero .cta-row{ animation: fadeUp 0.7s ease 0.3s both; }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .project-card, .skill-pill, .fact-list li {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 30px -18px color-mix(in srgb, var(--ink) 35%, transparent);
+  }
+  .skill-pill:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px -10px color-mix(in srgb, var(--ink) 30%, transparent);
+  }
+
+  .mark-small { transition: transform 0.3s ease; }
+  .mark-small:hover { transform: rotate(-8deg) scale(1.05); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; animation: none !important; }
+    .reveal { opacity: 1 !important; transform: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="mark-small">SA</div>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="https://claude.ai/artifact/8N5EUBFHmfQiwmTsnCgEh4">My Journey</a>
+        <a href="https://claude.ai/artifact/7M4UXB5wN3BuETdFWhAdG5">Advice</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="hero wrap">
+    <div class="mark">SA</div>
+    <h1>Sidra Afaq</h1>
+    <p class="role">Undergraduate with <strong>big dreams</strong> — currently studying, building, and figuring out what comes next.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#skills">See my work</a>
+      <a class="btn btn-ghost" href="#contact">Get in touch</a>
+    </div>
+  </header>
+
+  <section id="about" class="band-alt reveal">
+    <div class="wrap">
+      <p style="color: var(--ink-soft); max-width: 60ch; font-size: 1.02rem; margin: 0 0 22px;">Undergraduate, always learning, and figuring out my direction one project at a time.</p>
+      <a class="btn btn-primary" href="https://claude.ai/artifact/LJKLw3BgqvieEvNkQuVcb2">Read more about me</a>
+    </div>
+  </section>
+
+  <section id="skills" class="reveal">
+    <div class="wrap">
+      <p style="color: var(--ink-soft); max-width: 60ch; font-size: 1.02rem; margin: -14px 0 22px;">Branding, content creation, Canva, MS Office, and basic web dev — learned by doing.</p>
+      <a class="btn btn-primary" href="https://claude.ai/artifact/MdzzSwHNTvqyAm5J7K8rky">See all my skills</a>
+    </div>
+  </section>
+
+  <section id="contact" class="contact reveal">
+    <div class="wrap">
+      <h2>Let's talk</h2>
+      <p>Whether it's a project, an opportunity, or just to say hi — I'd love to hear from you.</p>
+      <div class="cta-row" style="margin-top: 28px;">
+        <a class="btn btn-primary" href="mailto:youremail@example.com">Email me</a>
+        <a class="btn btn-ghost" href="#">LinkedIn</a>
+        <a class="btn btn-ghost" href="#">GitHub</a>
+      </div>
+    </div>
+    <div class="wrap">
+      <footer>
+        <span>&copy; 2026 Sidra Afaq</span>
+        <span><a href="https://claude.ai/artifact/8N5EUBFHmfQiwmTsnCgEh4" style="color:inherit;">My Journey</a> &middot; <a href="https://claude.ai/artifact/7M4UXB5wN3BuETdFWhAdG5" style="color:inherit;">Advice</a></span>
+      </footer>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || !els.length) {
+        els.forEach(function (el) { el.classList.add('is-visible'); });
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</body>
+</html>
